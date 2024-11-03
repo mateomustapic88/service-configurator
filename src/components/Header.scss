@@ -1,0 +1,25 @@
+@import "../styles/global.scss";
+
+.header {
+  height: 72px;
+  background-color: $color-primary-100;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    color: white;
+    font-size: 32px;
+    margin-left: 20px;
+  }
+
+  .service-cost-text {
+    margin-right: 20px;
+  }
+}

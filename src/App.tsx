@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { ConfiguratorProvider } from "./contexts/ConfiguratorContext";
+import IntroScreen from "./screens/IntroScreen";
+import ServiceFormScreen from "./screens/ServiceConfiguratorForm";
+import ServiceSummaryScreen from "./screens/ServiceSummaryScreen";
+import SuccessScreen from "./screens/SuccessScreen";
+import { useConfigurator } from "./contexts/ConfiguratorContext";
+import Header from "./components/Header";
+import "./styles/global.scss";
+import "./styles/typography.scss";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ConfiguratorProvider>
+      <Header />
+      <Screens />
+    </ConfiguratorProvider>
   );
-}
+};
+
+const Screens: React.FC = () => {
+  const { screen } = useConfigurator();
+
+  switch (screen) {
+    case "Intro":
+      return <IntroScreen />;
+    case "Form":
+      return <ServiceFormScreen />;
+    case "Summary":
+      return <ServiceSummaryScreen />;
+    case "Success":
+      return <SuccessScreen />;
+    default:
+      return null;
+  }
+};
 
 export default App;
