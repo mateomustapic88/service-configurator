@@ -1,46 +1,55 @@
-# Getting Started with Create React App
+# Service Configurator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Summary
 
-## Available Scripts
+The Service Configurator is a web application designed to streamline the process of selecting vehicle services and generating final quotes for users. The application allows users to choose a manufacturer, select multiple services, apply promo codes for discounts, and submit their contact details for a service quote. The app features a clean and modern user interface, ensuring a seamless experience across different devices.
 
-In the project directory, you can run:
+## Technologies Used
 
-### `npm start`
+- **React**: A JavaScript library for building user interfaces.
+- **TypeScript**: A superset of JavaScript that provides static typing for better code quality and developer experience.
+- **Sass**: A CSS preprocessor that allows for more modular and maintainable stylesheets.
+- **Context API**: For state management across the application.
+- **Fetch API**: For handling HTTP requests.
+- **React Router**: For handling navigation between different screens of the application.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Development Architecture Principles
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This project follows several key architectural principles:
 
-### `npm test`
+- **SOLID Principles**: Ensuring that the code is modular, maintainable, and scalable.
+- **Clean Code**: Adopting best practices in coding style to improve readability and maintainability.
+- **Separation of Concerns**: Keeping different aspects of the application (e.g., UI components, business logic, and data management) clearly separated to enhance organization and facilitate testing.
+- **Responsive Design**: Ensuring the application is usable on a variety of screen sizes by utilizing responsive layout techniques.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Instructions
 
-### `npm run build`
+### Cloning the Repository
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To clone the project, run the following command in your terminal:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/yourusername/service-configurator.git
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Installing Dependencies
+Navigate into the project directory:
 
-### `npm run eject`
+```bash
+cd service-configurator
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Install the required dependencies:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Running the Application
+Once the dependencies are installed, you can run the application using the following command:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+npm start
+```
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This will start the development server, and you can access the application at http://localhost:3000.
