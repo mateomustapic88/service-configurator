@@ -7,37 +7,46 @@ import Button from "../components/Button";
 const ServiceSummaryScreen: React.FC = () => {
   const {
     manufacturer,
-    services,
+    selectedServices,
     promoCode,
     fullName,
     email,
     note,
     phoneNumber,
+    discount,
     setScreen,
   } = useConfigurator();
 
-  // Calculate total cost with discount if promo code is applied
-  const totalCost = services.reduce((sum, service) => sum + service.price, 0);
-  const discountedTotal = promoCode ? totalCost * 0.9 : totalCost;
-  const discountAmount = promoCode ? totalCost * 0.1 : 0; // 10% discount
-  const discountPercentage = promoCode ? "10%" : "0%";
+  // Calculate the discount multiplier (as a decimal)
+  const discountMultiplier = 1 - discount / 100;
 
-  // Function to handle final submission
+  // Calculate total cost with discount if promo code is applied
+  const totalCost = selectedServices.reduce(
+    (sum, service) => sum + service.price,
+    0
+  );
+  const discountedTotal = promoCode
+    ? totalCost * discountMultiplier
+    : totalCost;
+  const discountAmount = promoCode ? totalCost - discountedTotal : 0;
+  const discountPercentage = promoCode ? `${discount}%` : "0%";
+
   const handleSubmit = async () => {
     if (!manufacturer) {
       alert("Please select a manufacturer.");
       return;
     }
 
-    const serviceIds = services.map((service) => service.id);
+    const serviceIds = selectedServices.map((service) => service.id);
+
     const requestData = {
       manufacturerId: manufacturer,
       serviceIds,
-      promoCode,
       fullName,
       email,
       note,
       phoneNumber,
+      ...(promoCode && { promoCode }),
     };
 
     try {
@@ -68,14 +77,14 @@ const ServiceSummaryScreen: React.FC = () => {
       <div className='summary-section'>
         <h4>Odabrane usluge</h4>
         <ul>
-          {services.map((service) => (
-            <>
-              <li key={service.id}>
-                <span style={{ height: "24px" }}>{service.name}</span>
-                <span style={{ height: "24px" }}>{service.price} €</span>
+          {selectedServices.map((service, index) => (
+            <React.Fragment key={index}>
+              <li>
+                <span>{service.name}</span>
+                <span>{service.price} €</span>
               </li>
               <hr />
-            </>
+            </React.Fragment>
           ))}
         </ul>
         <div className='discount-total'>
@@ -100,12 +109,7 @@ const ServiceSummaryScreen: React.FC = () => {
       </div>
 
       <div className='actions'>
-        <Button
-          className='secondary-button'
-          type='secondary'
-          size='small'
-          onClick={() => setScreen("Form")}
-        >
+        <Button type='secondary' size='small' onClick={() => setScreen("Form")}>
           Nazad
         </Button>
         <Button

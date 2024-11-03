@@ -13,6 +13,8 @@ const ServiceConfiguratorForm: React.FC = () => {
     manufacturers,
     services,
     promoCode,
+    discount,
+    setDiscount,
     setPromoCode,
     fullName,
     setFullName,
@@ -24,12 +26,12 @@ const ServiceConfiguratorForm: React.FC = () => {
     setPhoneNumber,
     phoneNumber,
     manufacturer,
+    selectedServices,
+    setSelectedServices,
   } = useConfigurator();
 
-  const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [isCouponVisible, setIsCouponVisible] = useState<boolean>(false);
-  const [discount, setDiscount] = useState<number>(0);
 
   // Error states for form validation
   const [errors, setErrors] = useState({
@@ -48,7 +50,19 @@ const ServiceConfiguratorForm: React.FC = () => {
     setPhoneNumber("");
     setNote("");
     setPromoCode("");
-  }, [setFullName, setEmail, setPhoneNumber, setNote, setPromoCode]);
+    setDiscount(0);
+    setSelectedServices(() => []);
+    setManufacturer("");
+  }, [
+    setFullName,
+    setEmail,
+    setPhoneNumber,
+    setNote,
+    setPromoCode,
+    setDiscount,
+    setSelectedServices,
+    setManufacturer,
+  ]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,21 +80,30 @@ const ServiceConfiguratorForm: React.FC = () => {
   }, [setManufacturers, setServices]);
 
   const handleServiceChange = (serviceId: string) => {
-    setSelectedServices((prevSelected) =>
-      prevSelected.includes(serviceId)
-        ? prevSelected.filter((id) => id !== serviceId)
-        : [...prevSelected, serviceId]
-    );
+    const service = services.find((s) => s.id === serviceId);
+    if (!service) return;
+
+    setSelectedServices((prevSelected) => {
+      const isSelected = prevSelected.some((s) => s.name === service.name);
+
+      if (isSelected) {
+        return prevSelected.filter((s) => s.name !== service.name);
+      } else {
+        return [
+          ...prevSelected,
+          { id: service.id, name: service.name, price: service.price },
+        ];
+      }
+    });
   };
 
   useEffect(() => {
-    const total = selectedServices.reduce((acc, serviceId) => {
-      const service = services.find((s) => s.id === serviceId);
-      return service ? acc + service.price : acc;
+    const total = selectedServices.reduce((acc, selectedService) => {
+      return acc + selectedService.price;
     }, 0);
     const discountedTotal = total - (total * discount) / 100;
     setTotalPrice(discountedTotal);
-  }, [selectedServices, services, discount]);
+  }, [selectedServices, discount]);
 
   const handleCouponValidation = async () => {
     try {
@@ -168,10 +191,11 @@ const ServiceConfiguratorForm: React.FC = () => {
               type='checkbox'
               id={service.id}
               value={service.id}
-              checked={selectedServices.includes(service.id)}
+              checked={selectedServices.some((s) => s.name === service.name)}
               onChange={() => handleServiceChange(service.id)}
               style={{ borderColor: errors.selectedServices ? "red" : "" }}
             />
+
             <label htmlFor={service.id}>
               {`${service.name} (${service.price} €)`}
             </label>

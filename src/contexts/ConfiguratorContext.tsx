@@ -1,5 +1,11 @@
 import React, { createContext, useState, useContext, ReactNode } from "react";
 
+interface SelectedService {
+  id: string;
+  name: string;
+  price: number;
+}
+
 interface Manufacturer {
   id: string;
   name: string;
@@ -15,11 +21,16 @@ interface ConfiguratorContextType {
   manufacturer: string | null;
   services: { id: string; name: string; price: number }[];
   promoCode: string | null;
+  discount: number;
   fullName: string;
   email: string;
   note: string;
   screen: string;
   phoneNumber: string;
+  selectedServices: SelectedService[];
+  setSelectedServices: (
+    updater: (prev: SelectedService[]) => SelectedService[]
+  ) => void;
   setManufacturer: (manufacturer: string) => void;
   setServices: (
     services: { id: string; name: string; price: number }[]
@@ -29,6 +40,7 @@ interface ConfiguratorContextType {
   setEmail: (email: string) => void;
   setNote: (note: string) => void;
   setPhoneNumber: (phoneNumber: string) => void;
+  setDiscount: (discountPercentage: number) => void;
   setScreen: (screen: string) => void;
 }
 
@@ -44,7 +56,11 @@ export const ConfiguratorProvider: React.FC<ConfiguratorProviderProps> = ({
   const [services, setServices] = useState<
     { id: string; name: string; price: number }[]
   >([]);
+  const [selectedServices, setSelectedServices] = useState<SelectedService[]>(
+    []
+  );
   const [promoCode, setPromoCode] = useState<string | null>(null);
+  const [discount, setDiscount] = useState<number>(0);
   const [fullName, setFullName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [note, setNote] = useState<string>("");
@@ -55,10 +71,14 @@ export const ConfiguratorProvider: React.FC<ConfiguratorProviderProps> = ({
     <ConfiguratorContext.Provider
       value={{
         manufacturers,
+        selectedServices,
+        setSelectedServices,
         setManufacturers,
         manufacturer,
         services,
         promoCode,
+        discount,
+        setDiscount,
         fullName,
         email,
         note,

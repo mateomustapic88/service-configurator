@@ -36,6 +36,8 @@
 
   .summary-section {
     background-color: $bg-color-200;
+    padding-left: 8px;
+    padding-right: 8px;
 
     p,
     ul {
@@ -63,10 +65,9 @@
     .discount-total {
       display: flex;
       flex-direction: column;
-      align-items: flex-end; // Align items to the right
+      align-items: flex-end;
 
       .discount {
-        margin-top: 10px;
         color: $color-base-100;
       }
 
@@ -90,35 +91,8 @@
     justify-content: space-between;
 
     .submit-button {
-      background-color: $color-primary-100;
-      color: $color-base-600;
-      font-family: $font-family; /* Ensure font family is applied */
-      font-size: 16px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-
-      &:hover {
-        background-color: $color-primary-200;
-      }
-    }
-
-    .secondary-button {
-      background-color: $bg-color-300;
-      color: $color-base-100;
-      font-size: 16px;
-      font-weight: 400;
-      padding: 10px 20px;
-      border: 1px solid $color-base-400;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-
-      &:hover {
-        background-color: $color-base-500;
-      }
+      margin-left: 20px;
+      width: 100%;
     }
   }
 }
