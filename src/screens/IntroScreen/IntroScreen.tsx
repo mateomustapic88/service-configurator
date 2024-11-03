@@ -1,8 +1,8 @@
 import React from "react";
-import { useConfigurator } from "../contexts/ConfiguratorContext";
+import { useConfigurator } from "../../contexts/ConfiguratorContext";
 import "./IntroScreen.scss";
-import Button from "../components/Button";
-import toolsAndUtensilsIcon from "../assets/icons/toolsAndUtensils.svg";
+import Button from "../../components/Button/Button";
+import toolsAndUtensilsIcon from "../../assets/icons/toolsAndUtensils.svg";
 
 const IntroScreen: React.FC = () => {
   const { setScreen } = useConfigurator();

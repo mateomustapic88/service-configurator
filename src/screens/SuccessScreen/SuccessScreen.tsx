@@ -1,8 +1,8 @@
 import React from "react";
-import { useConfigurator } from "../contexts/ConfiguratorContext";
+import { useConfigurator } from "../../contexts/ConfiguratorContext";
 import "./SuccessScreen.scss";
-import Button from "../components/Button";
-import mailConfirmationIcon from "../assets/icons/mailConfirmationIcon.svg";
+import Button from "../../components/Button/Button";
+import mailConfirmationIcon from "../../assets/icons/mailConfirmationIcon.svg";
 
 const SuccessScreen: React.FC = () => {
   const { setScreen } = useConfigurator();

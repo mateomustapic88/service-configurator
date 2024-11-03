@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useConfigurator } from "../contexts/ConfiguratorContext";
-import { getManufacturers, getServices, validatePromoCode } from "../utils/api";
+import { useConfigurator } from "../../contexts/ConfiguratorContext";
+import {
+  getManufacturers,
+  getServices,
+  validatePromoCode,
+} from "../../utils/api";
 import "./ServiceConfiguratorForm.scss";
-import Button from "../components/Button";
-import checkmarkIcon from "../assets/icons/checkmark.svg";
+import Button from "../../components/Button/Button";
+import checkmarkIcon from "../../assets/icons/checkmark.svg";
 
 const ServiceConfiguratorForm: React.FC = () => {
   const {

@@ -1,8 +1,8 @@
 import React from "react";
-import { useConfigurator } from "../contexts/ConfiguratorContext";
-import { requestFinalQuote } from "../utils/api";
+import { useConfigurator } from "../../contexts/ConfiguratorContext";
+import { requestFinalQuote } from "../../utils/api";
 import "./ServiceSummaryScreen.scss";
-import Button from "../components/Button";
+import Button from "../../components/Button/Button";
 
 const ServiceSummaryScreen: React.FC = () => {
   const {
