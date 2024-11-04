@@ -145,12 +145,12 @@ const ServiceConfiguratorForm: React.FC = () => {
     const newErrors = {
       manufacturer: manufacturer
         ? ""
-        : "Please select at least one manufacturer",
-      fullName: fullName ? "" : "Please enter your full name",
-      email: email ? "" : "Please enter your email address",
-      phoneNumber: phoneNumber ? "" : "Please enter your phone number",
+        : "Molimo odaberite bar jednog proizvođača vozila",
+      fullName: fullName ? "" : "Molimo unesite ime i prezime",
+      email: email ? "" : "Molimo unesite email adresu",
+      phoneNumber: phoneNumber ? "" : "Molimo unesite broj telefona",
       selectedServices:
-        selectedServices.length > 0 ? "" : "Please select at least one service",
+        selectedServices.length > 0 ? "" : "Molimo odaberite bar jednu uslugu",
       promoCode: errors.promoCode,
     };
 
@@ -166,9 +166,9 @@ const ServiceConfiguratorForm: React.FC = () => {
 
   return (
     <div className='service-configurator-form-container'>
-      <h2 className='service-configurator-form-title'>Service Configurator</h2>
+      <h2 className='service-configurator-form-title'>Konfigurator Servisa</h2>
 
-      <h4 className='manufacturer-title'>Select your vehicle's manufacturer</h4>
+      <h4 className='manufacturer-title'>Odaberite proizvođača vašeg vozila</h4>
       <div className='manufacturer-container'>
         {manufacturers.map((manufacturerItem) => (
           <div key={manufacturerItem.id} className='manufacturer-item'>
@@ -187,7 +187,9 @@ const ServiceConfiguratorForm: React.FC = () => {
         )}
       </div>
 
-      <h4 className='services-title'>Select one or more services you need</h4>
+      <h4 className='services-title'>
+        Odaberite jednu ili više usluga koju trebate
+      </h4>
       <div className='services-container'>
         {services.map((service) => (
           <div key={service.id} className='service-item'>
@@ -217,7 +219,7 @@ const ServiceConfiguratorForm: React.FC = () => {
             <>
               <input
                 type='text'
-                placeholder='Enter coupon code'
+                placeholder='Unesite kupon kod'
                 value={promoCode || ""}
                 onChange={(e) => setPromoCode(e.target.value)}
                 style={{ borderColor: errors.promoCode ? "red" : "" }}
@@ -239,22 +241,22 @@ const ServiceConfiguratorForm: React.FC = () => {
             </>
           ) : (
             <span onClick={() => setIsCouponVisible(!isCouponVisible)}>
-              I have a coupon
+              Imam kupon
             </span>
           )}
         </div>
       </div>
 
-      <h4 className='user-data-title'>Your Information</h4>
+      <h4 className='user-data-title'>Vaši podaci</h4>
       <div className='user-data-container'>
         <div className='input-row'>
           <label className='input-label'>
-            Full Name
+            Ime i prezime
             <input
               type='text'
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              placeholder='Enter your full name'
+              placeholder='Unesite ime i prezime'
               required
               style={{ border: errors.fullName ? "red solid 1px" : "" }}
             />
@@ -263,12 +265,12 @@ const ServiceConfiguratorForm: React.FC = () => {
             )}
           </label>
           <label className='input-label phone-label'>
-            Phone Number
+            Broj telefona
             <input
               type='tel'
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              placeholder='Enter your phone number'
+              placeholder='Unesite broj telefona'
               required
               style={{ border: errors.phoneNumber ? "red solid 1px" : "" }}
             />
@@ -279,12 +281,12 @@ const ServiceConfiguratorForm: React.FC = () => {
         </div>
         <div className='input-row'>
           <label className='input-label'>
-            Email Address
+            Email adresa
             <input
               type='email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder='Enter your email address'
+              placeholder='Unesite email adresu'
               required
               style={{ border: errors.email ? "red solid 1px" : "" }}
             />
@@ -293,11 +295,11 @@ const ServiceConfiguratorForm: React.FC = () => {
         </div>
         <div className='input-row'>
           <label className='input-label'>
-            Note (optional)
+            Napomena (opcionalno)
             <textarea
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              placeholder='Enter a note'
+              placeholder='Unesite napomenu'
             />
           </label>
         </div>
