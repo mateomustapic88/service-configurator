@@ -116,18 +116,18 @@ const ServiceConfiguratorForm: React.FC = () => {
         setDiscount(response.discountPercentage);
         setErrors((prevErrors) => ({ ...prevErrors, promoCode: "" }));
         alert(
-          `Promo code applied! You get a ${response.discountPercentage}% discount.`
+          `Promo kod validan! Dobili ste ${response.discountPercentage}% popusta.`
         );
       } else {
         setErrors((prevErrors) => ({
           ...prevErrors,
-          promoCode: "Coupon not valid",
+          promoCode: "Kupon nije validan",
         }));
       }
     } catch {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        promoCode: "Coupon not valid",
+        promoCode: "Kupon nije validan",
       }));
     }
   };
